@@ -1,34 +1,42 @@
 ---
-
 const res = await fetch("https://dogapi.dog/api/v2/breeds");
 const data = await res.json();
 
 console.log(data);
-
-
 ---
 
 <div class="grid gap-8 sn:grid-cols-2 lg:grid-cols-3">
-    <article>
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark">
-                <tr>
-                    <th>Nombre</th>
-                    <th>Descripcion</th>
-                    <th>Hipoalargenico</th>
-                </tr>
-            </thead>
-            <tbody>
-                {data.data.map((breed: any) => (
-                    <tr>
-                        <td>{breed.attributes.name || "N/A"}</td>
-                        <td>{breed.attributes.description || "N/A"}</td>
-                        <td>{breed.attributes.hypoallergenic.toString() || "N/A"}</td>
+    <table
+        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+    >
+        <thead
+            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark"
+        >
+            <tr>
+                <th scope="col" class="px-6 py-3">Nombre</th>
+                <th scope="col" class="px-6 py-3">Descripcion</th>
+                <th scope="col" class="px-6 py-3">Hipoalargenico</th>
+            </tr>
+        </thead>
+        <tbody>
+            {
+                data.data.map((breed: any) => (
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td class="px-6 py-4">
+                            {breed.attributes.name || "N/A"}
+                        </td>
+                        <td class="px-6 py-4">
+                            {breed.attributes.description || "N/A"}
+                        </td>
+                        <td class="px-6 py-4">
+                            {breed.attributes.hypoallergenic.toString() ||
+                                "N/A"}
+                        </td>
                     </tr>
-                ))}
-            </tbody>
-        </table>
-    </article>
+                ))
+            }
+        </tbody>
+    </table>
 </div>
 
 <style>
@@ -46,67 +54,4 @@ console.log(data);
     th {
         background-color: #f4f4f4;
     }
-
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    Product name
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Color
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Category
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Price
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Apple MacBook Pro 17"
-                </th>
-                <td class="px-6 py-4">
-                    Silver
-                </td>
-                <td class="px-6 py-4">
-                    Laptop
-                </td>
-                <td class="px-6 py-4">
-                    $2999
-                </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Microsoft Surface Pro
-                </th>
-                <td class="px-6 py-4">
-                    White
-                </td>
-                <td class="px-6 py-4">
-                    Laptop PC
-                </td>
-                <td class="px-6 py-4">
-                    $1999
-                </td>
-            </tr>
-            <tr class="bg-white dark:bg-gray-800">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Magic Mouse 2
-                </th>
-                <td class="px-6 py-4">
-                    Black
-                </td>
-                <td class="px-6 py-4">
-                    Accessories
-                </td>
-                <td class="px-6 py-4">
-                    $99
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </style>
